@@ -24,7 +24,6 @@ def submit_todo():
     name = request.form.get('itemName')
     desc = request.form.get('itemDescription')
     
-    # Store in MongoDB (assuming you have your collection set up)
     db.todos.insert_one({"itemName": name, "itemDescription": desc})
     
     return "Item added to MongoDB!"
