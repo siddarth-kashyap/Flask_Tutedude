@@ -19,6 +19,15 @@ def index():
     # We pass None for the error initially
     return render_template('index.html', error=None)
 
+@app.route('/submittodoitem', methods=['POST'])
+def submit_todo():
+    name = request.form.get('itemName')
+    desc = request.form.get('itemDescription')
+    
+    db.todos.insert_one({"itemName": name, "itemDescription": desc})
+    
+    return "Item added to MongoDB!"
+
 @app.route('/submit', methods=['POST'])
 def submit_data():
     name = request.form.get('student_name')
